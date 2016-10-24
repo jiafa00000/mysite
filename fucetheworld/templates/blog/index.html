@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {% if is_home %}
+        Home|该用户比较爱吃鱼
+    {% endif %}
+    {% if is_arch_month %}
+        {{month}}Month|{{year}}Year|Kzmoon- ( ゜- ゜)つロ 乾杯~ -
+    {% endif %}
+    {% if is_classif %}
+        {{classif}}|易燃又美味！
+    {% endif %}
+    {% if is_tag %}
+        {{tag}}|这里有一颗生锈的铁钉
+    {% endif %}
+{% endblock %}
+{% block path %}
+    {% if is_home %}
+     当前位置&nbsp;：&nbsp;首页 
+    {% endif%}
+   
+    {% if is_arch_month %}
+     <a href = "{% url 'home'%}">当前位置&nbsp;:&nbsp;首页&nbsp;</a>»&nbsp;按月归档&nbsp;:  &nbsp;{{month}}月 {{year}}年
+    {% endif%}
+    {% if  is_classfi  %}
+     <a href = "{% url 'home'%}">当前位置&nbsp;:&nbsp;首页&nbsp;</a>»&nbsp;文章分类&nbsp;:&nbsp;  {{classfi}}
+    {% endif%}
+    {% if  is_tag  %}
+     <a href = "{% url 'home'%}">当前位置&nbsp;:&nbsp;首页&nbsp;</a>»&nbsp;标签&nbsp;:&nbsp;  {{tag}}
+    {% endif%}
+
+    {% if  is_search  %}
+     <a href = "{% url 'home'%}">当前位置&nbsp;:&nbsp;首页&nbsp;</a>»&nbsp;搜索&nbsp;:&nbsp;{{s}}  {{tag}}
+    {% endif%}
+{% endblock %}
+{% block content %}
+    {% if error %}
+    <h2>OMG,there is no such article</h2>
+    {% else %}
+        {% for article in articles %}
+        <div class="archive">
+        	<div id="archives">
+        		<header class="entry-header"><!-- article header -->
+        			<div class="entry-info">
+        				<span class="entry-date"><!-- article date #header -->
+        					<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+				{{article.publish_time.year}}年{{article.publish_time.month}}月{{article.publish_time.day}}日
+        				</span>
+        				<span class="author vcard"><!-- article author #header -->
+        					<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+        					Kzmoon
+        				</span>
+        				<span class="comments-link"><!-- article comments #header -->
+        					<span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+        					<span class="ds-thread-count" data-thread-key="{{article.id}}"></span>
+        				</span>
+        			</div>
+        			<h1 class="entry-title"> <!-- article title -->
+        				<a href="{{ article.get_absolute_url }}" rel="bookmark">{{article.title}}</a>
+        			</h1>
+        			<div class="post-format-indicator">
+        				<a class="entry-format" href="{{ article.get_absoulte_url }}"></a>
+        			</div>
+        		</header>
+        		
+        		<div class="entry-content">
+        			<p class="MsoNormal">
+        				{{ article.content|truncatewords_html:40|safe}}
+        			</p>
+        			<div class="clearfix"></div>
+        		</div> <!-- #entry_content -->
+
+        		<footer class="entry-meta">
+        			<span class="entry-categories">
+        				<span class="glyphicon glyphicon-folder-close" aria-hidden="true"></span>
+        				<a href="{% url 'classfiDetail' classfi=article.classification %}" rel="category">{{article.classificaton}}</a>
+        			</span>
+        			<span class="entry-tags">
+        				<span class="glyphicon glyphicon-tags" aria-hidden="true"></span> 
+        				{% for i in article.get_tags %}
+        				    <a href="{{ i.get_absolute_url }}" rel="tag">{{i}}&nbsp;&nbsp;</a>
+        				{% endfor %}
+        			</span>
+        			<a href="{{ article.get_absolute_url }}" class="more-link"><span class="glyphicon glyphicon-link" aria-hidden="true"></span>Read More</a>
+        		</footer>
+        	</div>
+        </div>
+        {% endfor %}
+    {% endif %}
+    {% include "blog/_paginator.html" %}
+{% endblock %}
+{% block side %}
+	{% include "blog/_side.html" %}
+{% endblock %}

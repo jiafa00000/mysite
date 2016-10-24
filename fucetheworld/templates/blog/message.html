@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}
+留言板|搞个大新闻？
+{% endblock %}
+{% block path %}
+<a href="{% url 'home' %}">当前位置&nbsp;:&nbsp;首页&nbsp;</a>»&nbsp;给我留言
+{% endblock %}
+{% block content %}
+<div class="archive">
+	<div id="archives">
+		<h5>
+			Hi~ </br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			欢&nbsp;迎&nbsp;访&nbsp;问&nbsp;我&nbsp;的&nbsp;小&nbsp;站&nbsp;，&nbsp;你&nbsp;可&nbsp;以&nbsp;在&nbsp;这&nbsp;里&nbsp;给&nbsp;我&nbsp;留&nbsp;言&nbsp;^_^
+		</h5>
+	</div>
+</div>
+{% include "blog/_comments.html" %}
+{% endblock %}
+{% block side %}
+{% include "blog/_side.html" %}
+{% endblock %}

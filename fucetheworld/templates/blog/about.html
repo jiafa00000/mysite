@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}
+    About|Kzmoon 
+{% endblock %}
+{% block path %}
+    <a href = "{% url 'home'%}">当前位置&nbsp;:&nbsp;首页&nbsp;</a>»&nbsp;关于我
+{% endblock %}
+{% block content %}
+<div class="archive">
+	<div id="archives">
+		<h3>
+			About&nbsp;This&nbsp;Site
+		</h3>
+		<blockquote>
+			个人博客，看心情更，记录一些生活琐事和学习笔记。。
+			<br>
+			<br>
+			Ubuntu系统，使用Django开发，借鉴各路大神。
+		</blockquote>
+		<br>
+		<h3>
+			About&nbsp;Me
+		</h3>
+		<blockquote>
+			刚从网戒所毕业中二少年，抑制不住体内洪荒之力，准备在互联网领域大<strong>干</strong>♂一场。<br><br>			
+            技术渣，恶补中。<br><br>
+            <strong>技能</strong><br><br>
+            语言<br><br>
+            Java多年入门经验，用Python造轮子并乐此不疲，懂一点<a href="https://zh.wikipedia.org/wiki/HTML">HowToMakeLove</a>语言，JavaScript渣。<br><br>
+            美工<br><br>
+            Photoshop忘记多少年使用经验，熟练盗图去水印，照片加特技，美颜P图，曾一力承担<a href="http://www.cuc.edu.cn/">某知名艺校</a>忘记什么部门一年海报制作。<br><br>
+            产品<br><br>
+            0年产品经验，自以为是。<br><br>
+		</blockquote>
+		<br>
+		<h3>Contact&nbsp;Me</h3>
+		<ul>
+			<li>Blog:&nbsp;&nbsp;&nbsp;<a href="http://www.kzmoon.me">Kzmoon's Page</a></li>
+			<li>E-Mail:&nbsp;&nbsp;&nbsp;jiafa00000@163.com</li>
+		</ul>
+	</div>
+</div>
+{% include "blog/_comments.html" %}
+{% endblock %}
+{% block side %}
+{% include "blog/_side.html" %}
+{% endblock %}
